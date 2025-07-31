@@ -122,10 +122,6 @@ export default function DigitalCard() {
     }
   }
 
-  const handleTestLink = () => {
-    window.open(cardUrl, "_blank")
-  }
-
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -291,32 +287,20 @@ export default function DigitalCard() {
             )}
           </div>
 
-          {/* 調試按鈕 */}
-          <div className="mt-4 flex gap-2 justify-center">
+          {/* QR碼下方的複製按鈕 */}
+          <div className="mt-4 flex justify-center">
             <button
               onClick={handleCopyLink}
-              className="bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded text-sm flex items-center gap-1"
+              className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded text-sm flex items-center gap-2"
             >
               <Copy className="w-4 h-4" />
-              複製連結
-            </button>
-            <button
-              onClick={handleTestLink}
-              className="bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded text-sm"
-            >
-              測試連結
+              Copy QRCode URL
             </button>
           </div>
         </div>
 
         {/* 下半部 - 白色背景 */}
         <div className="p-8 text-center">
-          {/* 顯示連結資訊 */}
-          <div className="mb-6 p-3 bg-gray-100 rounded-lg">
-            <p className="text-xs text-gray-600 mb-1">名片連結：</p>
-            <p className="text-xs text-gray-800 break-all">{cardUrl}</p>
-          </div>
-
           {/* 自我介紹 */}
           {userData.bio && userData.bio !== "n/a" && (
             <div className="mb-6">
