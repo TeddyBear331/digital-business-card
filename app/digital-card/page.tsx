@@ -300,34 +300,17 @@ export default function DigitalCard() {
         </div>
 
         {/* 下半部 - 白色背景 */}
-        <div className="p-8 text-center">
-          {/* 自我介紹 */}
+        <div className="p-8">
+          {/* 自我介紹 - 靠左對齊 */}
           {userData.bio && userData.bio !== "n/a" && (
             <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">About</h3>
-              <p className="text-gray-700 text-sm leading-relaxed">{userData.bio}</p>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 text-left">About</h3>
+              <p className="text-gray-700 text-sm leading-relaxed text-left">{userData.bio}</p>
             </div>
           )}
 
-          {/* 公司Logo */}
-          {userData.company_logo_url && (
-            <div className="mb-6">
-              <div className="w-20 h-20 bg-gray-100 rounded-lg mx-auto flex items-center justify-center overflow-hidden">
-                <img
-                  src={userData.company_logo_url || "/placeholder.svg"}
-                  alt="Company Logo"
-                  className="max-w-full max-h-full object-contain"
-                  onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                    console.log("Company logo failed to load:", userData.company_logo_url)
-                    e.currentTarget.style.display = "none"
-                  }}
-                />
-              </div>
-            </div>
-          )}
-
-          {/* 社交媒體圖標 */}
-          <div className="grid grid-cols-4 gap-4 justify-items-center">
+          {/* 社交媒體圖標 - 靠左對齊 */}
+          <div className="flex flex-wrap gap-4 justify-start mb-4">
             {Object.entries(SocialIcons).map(([platform, { component: IconComponent, label }]) => {
               const urlFieldName = `${platform}_url` as keyof UserProfileData
               const url = userData[urlFieldName]
@@ -348,6 +331,23 @@ export default function DigitalCard() {
               return null
             })}
           </div>
+
+          {/* 公司Logo - 左右填滿 */}
+          {userData.company_logo_url && (
+            <div className="mt-4">
+              <div className="w-full h-20 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                <img
+                  src={userData.company_logo_url || "/placeholder.svg"}
+                  alt="Company Logo"
+                  className="max-w-full max-h-full object-contain"
+                  onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                    console.log("Company logo failed to load:", userData.company_logo_url)
+                    e.currentTarget.style.display = "none"
+                  }}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </Card>
 
